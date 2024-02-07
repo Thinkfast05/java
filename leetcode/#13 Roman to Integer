@@ -1,0 +1,24 @@
+import java.util.HashMap;
+import java.util.Map;
+class Solution {
+    public int romanToInt(String s) {
+        Map<Character, Integer> romanAlphabet=new HashMap<Character,Integer>();
+        romanAlphabet.put('I', 1);
+        romanAlphabet.put('V', 5);
+        romanAlphabet.put('X', 10);
+        romanAlphabet.put('L', 50);
+        romanAlphabet.put('C', 100);
+        romanAlphabet.put('D', 500);
+        romanAlphabet.put('M', 1000);
+        int n=s.length();
+        int res=romanAlphabet.get(s.charAt(n-1));
+        for(int i=n-2;i>=0;i--)
+        {
+            if(romanAlphabet.get(s.charAt(i))>=romanAlphabet.get(s.charAt(i+1)))
+                res+=romanAlphabet.get(s.charAt(i));
+            else
+                res-=romanAlphabet.get(s.charAt(i));
+        }
+        return res;
+    }
+}
